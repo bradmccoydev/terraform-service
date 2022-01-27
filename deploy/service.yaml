@@ -34,7 +34,7 @@ spec:
             - name: CONFIGURATION_SERVICE
               value: 'http://configuration-service:8080'
         - name: distributor
-          image: keptn/distributor:0.11.3
+          image: keptn/distributor:0.12.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -92,4 +92,4 @@ spec:
       protocol: TCP
   selector:
     run: terraform-service
-
+---
