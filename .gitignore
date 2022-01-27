@@ -16,7 +16,8 @@ vendor/*
 
 # binaries (created by go build on Linux/OSX)
 main
-keptn-service-template-go
+terraform-service
+terraform-service
 
 # IDE specific folders
 .vscode

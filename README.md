@@ -40,7 +40,7 @@ This implements a keptn-service-template-go for Keptn. If you want to learn more
 
 *Please fill in your versions accordingly*
 
-| Keptn Version    | [Keptn-Service-Template-Go Docker Image](https://hub.docker.com/r/keptnsandbox/keptn-service-template-go/tags) |
+| Keptn Version    | [Keptn-Service-Template-Go Docker Image](https://hub.docker.com/r/bradmccoydev/terraform-service/tags) |
 |:----------------:|:----------------------------------------:|
 |       0.6.1      | keptnsandbox/keptn-service-template-go:0.1.0 |
 |       0.7.1      | keptnsandbox/keptn-service-template-go:0.1.1 |
@@ -70,7 +70,7 @@ kubectl -n keptn get pods -l run=keptn-service-template-go
 Adapt and use the following command in case you want to up- or downgrade your installed version (specified by the `$VERSION` placeholder):
 
 ```console
-kubectl -n keptn set image deployment/keptn-service-template-go keptn-service-template-go=keptnsandbox/keptn-service-template-go:$VERSION --record
+kubectl -n keptn set image deployment/keptn-service-template-go keptn-service-template-go=bradmccoydev/terraform-service:$VERSION --record
 ```
 
 ### Uninstall
@@ -108,11 +108,11 @@ If you want to get more insights into processing those CloudEvents or even defin
 
 ### Common tasks
 
-* Build the binary: `go build -ldflags '-linkmode=external' -v -o keptn-service-template-go`
+* Build the binary: `go build -ldflags '-linkmode=external' -v -o terraform-service`
 * Run tests: `go test -race -v ./...`
-* Build the docker image: `docker build . -t keptnsandbox/keptn-service-template-go:dev` (Note: Ensure that you use the correct DockerHub account/organization)
-* Run the docker image locally: `docker run --rm -it -p 8080:8080 keptnsandbox/keptn-service-template-go:dev`
-* Push the docker image to DockerHub: `docker push keptnsandbox/keptn-service-template-go:dev` (Note: Ensure that you use the correct DockerHub account/organization)
+* Build the docker image: `docker build . -t bradmccoydev/terraform-service:latest` (Note: Ensure that you use the correct DockerHub account/organization)
+* Run the docker image locally: `docker run --rm -it -p 8080:8080 bradmccoydev/terraform-service:latest`
+* Push the docker image to DockerHub: `docker push bradmccoydev/terraform-service:latest` (Note: Ensure that you use the correct DockerHub account/organization)
 * Deploy the service using `kubectl`: `kubectl apply -f deploy/`
 * Delete/undeploy the service using `kubectl`: `kubectl delete -f deploy/`
 * Watch the deployment using `kubectl`: `kubectl -n keptn get deployment keptn-service-template-go -o wide`

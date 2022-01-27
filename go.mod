@@ -1,4 +1,4 @@
-module example.com/keptn-service-template-go
+module github.com/bradmccoydev/terraform-service
 
 go 1.16
 
