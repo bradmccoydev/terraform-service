@@ -1,10 +1,10 @@
 keptnservice:
   image:
     repository: docker.io/bradmccoydev/terraform-service # Container Image Name
-    pullPolicy: Always                   # Kubernetes Image Pull Policy
-    tag: "latest"                                 # Container Tag
+    pullPolicy: Always                       # Kubernetes Image Pull Policy
+    tag: "latest"                            # Container Tag
   service:
-    enabled: true                              # Creates a Kubernetes Service for the terraform-service
+    enabled: true                            # Creates a Kubernetes Service for the terraform-service
 
 distributor:
   stageFilter: ""                            # Sets the stage this helm service belongs to
@@ -16,14 +16,14 @@ distributor:
     tag: ""                                  # Container Tag
 
 remoteControlPlane:
-  enabled: true                             # Enables remote execution plane mode
+  enabled: false                            # Enables remote execution plane mode
   api:
     protocol: "http"                        # Used Protocol (http, https)
     hostname: ""                            # Hostname of the control plane cluster (and Port)
-    apiValidateTls: true                     # Defines if the control plane certificate should be validated
-    token: ""                                # Keptn API Token
+    apiValidateTls: true                    # Defines if the control plane certificate should be validated
+    token: ""                               # Keptn API Token
 
-imagePullSecrets: []                         # Secrets to use for container registry credentials
+imagePullSecrets: []                        # Secrets to use for container registry credentials
 
 serviceAccount:
   create: true                               # Enables the service account creation
