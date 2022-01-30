@@ -448,15 +448,15 @@ func processKeptnCloudEvent(ctx context.Context, event cloudevents.Event) error 
 	// your custom cloud event, e.g., sh.keptn.your-event
 	// see https://github.com/keptn-sandbox/echo-service/blob/a90207bc119c0aca18368985c7bb80dea47309e9/pkg/events.go
 	// for an example on how to generate your own CloudEvents and structs
-	case keptnv2.GetTriggeredEventType("your-event"): // sh.keptn.event.your-event.triggered
-		log.Printf("Processing your-event.triggered Event")
+	case keptnv2.GetTriggeredEventType("hello"): // sh.keptn.event.your-event.triggered
+		log.Printf("Processing hello.triggered Event")
 
 		// eventData := &keptnv2.YourEventTriggeredEventData{}
 		//  parseKeptnCloudEventPayload(event, eventData)
 
 		break
 	case keptnv2.GetStartedEventType(keptnv2.ConfigureMonitoringTaskName): // sh.keptn.event.your-event.started
-		log.Printf("Processing your-event.started Event")
+		log.Printf("Processing hello.started Event")
 
 		// eventData := &keptnv2.YourEventStartedEventData{}
 		// parseKeptnCloudEventPayload(event, eventData)
@@ -466,7 +466,7 @@ func processKeptnCloudEvent(ctx context.Context, event cloudevents.Event) error 
 
 		break
 	case keptnv2.GetFinishedEventType(keptnv2.ConfigureMonitoringTaskName): // sh.keptn.event.your-event.finished
-		log.Printf("Processing your-event.finished Event")
+		log.Printf("Processing hello.finished Event")
 
 		// eventData := &keptnv2.YourEventFinishedEventData{}
 		// parseKeptnCloudEventPayload(event, eventData)
