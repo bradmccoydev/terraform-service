@@ -1,3 +1,5 @@
+listenevents: "sh.keptn.event.hello.triggered"
+
 keptnservice:
   image:
     repository: docker.io/bradmccoydev/terraform-service # Container Image Name
