@@ -10,6 +10,46 @@ import (
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
 
+func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudevents.Event) error {
+	log.Printf("Handling hello.triggered Event: %s", incomingEvent.Context.GetID())
+	log.Printf("Incoming event ID (differs from above?): %s", incomingEvent.ID())
+	
+	var shkeptnctx string
+	incomingEvent.Context.ExtensionAs("shkeptncontext", &shkeptnctx)
+	log.Printf("Keptn Context ID is %s", &shkeptnctx)
+	
+	// Step 1 [MANDATORY]: Tell Keptn we are starting to process this event.
+	_, err := myKeptn.SendTaskStartedEvent(&keptnv2.EventData{
+			Status:  keptnv2.StatusSucceeded,
+			Result:  keptnv2.ResultPass,
+		        Message: "Starting the hello sequence...",
+	}, ServiceName)
+					      
+	if err != nil {
+		errMsg := fmt.Sprintf("Failed to send task started CloudEvent (%s), aborting...", err.Error())
+		log.Println(errMsg)
+		return err
+	}
+	
+	// Step 2: Do your work here
+	// Optional myKeptn.SendTaskStatusChangedEvent during processing to inform Keptn that hte status is being changed during execution
+	log.Printf("Doing work here...")
+	
+	// Step 3 [MANDATORY]: Tell Keptn we have finished handling event and send back data (as a cloud event)
+	_, err := myKeptn.SendTaskFinishedEvent(&keptnv2.EventData{
+			Status:  keptnv2.StatusSucceeded,
+			Result:  keptnv2.ResultPass,
+		        Message: "Finishing the hello sequence...",
+	}, ServiceName)
+					      
+	if err != nil {
+		errMsg := fmt.Sprintf("Failed to send task finished CloudEvent (%s), aborting...", err.Error())
+		log.Println(errMsg)
+		return err
+	}
+}
+
+
 /**
 * Here are all the handler functions for the individual event
 * See https://github.com/keptn/spec/blob/0.8.0-alpha/cloudevents.md for details on the payload
