@@ -4,7 +4,6 @@ metadata:
   name: {{ include "keptn-service.fullname" . }}
   labels:
     {{- include "keptn-service.labels" . | nindent 4 }}
-
 spec:
   replicas: 1
   selector:
@@ -111,7 +110,6 @@ spec:
             - name: HTTP_SSL_VERIFY
               value: "{{ .Values.remoteControlPlane.api.apiValidateTls | default "true" }}"
             {{- end }}
-
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
