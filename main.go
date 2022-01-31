@@ -448,8 +448,10 @@ func processKeptnCloudEvent(ctx context.Context, event cloudevents.Event) error 
 	// your custom cloud event, e.g., sh.keptn.your-event
 	// see https://github.com/keptn-sandbox/echo-service/blob/a90207bc119c0aca18368985c7bb80dea47309e9/pkg/events.go
 	// for an example on how to generate your own CloudEvents and structs
-	case keptnv2.GetTriggeredEventType("hello"): // sh.keptn.event.your-event.triggered
+	case keptnv2.GetTriggeredEventType("hello"): // sh.keptn.event.hello.triggered
 		log.Printf("Processing hello.triggered Event")
+		
+		return HandleHelloTriggeredEvent(myKeptn, event)
 
 		// eventData := &keptnv2.YourEventTriggeredEventData{}
 		//  parseKeptnCloudEventPayload(event, eventData)
