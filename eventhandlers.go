@@ -14,15 +14,11 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 	log.Printf("Handling hello.triggered Event: %s", incomingEvent.Context.GetID())
 	log.Printf("Incoming event ID (differs from above?): %s", incomingEvent.ID())
 	
-	var shkeptnctx string
-	incomingEvent.Context.ExtensionAs("shkeptncontext", &shkeptnctx)
-	log.Printf("Keptn Context ID is %s", &shkeptnctx)
-	
 	// Step 1 [MANDATORY]: Tell Keptn we are starting to process this event.
 	_, startedErr := myKeptn.SendTaskStartedEvent(&keptnv2.EventData{
 			Status:  keptnv2.StatusSucceeded,
 			Result:  keptnv2.ResultPass,
-		        Message: "Starting the hello sequence...",
+		        Message: "Start to handler the hello sequence...",
 	}, ServiceName)
 					      
 	if startedErr != nil {
@@ -37,16 +33,19 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 	
 	// Step 3 [MANDATORY]: Tell Keptn we have finished handling event and send back data (as a cloud event)
 	_, finishedErr := myKeptn.SendTaskFinishedEvent(&keptnv2.EventData{
-			Status:  keptnv2.StatusSucceeded,
-			Result:  keptnv2.ResultPass,
-		        Message: "Finishing the hello sequence...",
+		Status: keptnv2.StatusSucceeded,
+		Result: keptnv2.ResultPass,
+		Message: "Finished handling hello event...",
 	}, ServiceName)
-					      
+
 	if finishedErr != nil {
-		errMsg := fmt.Sprintf("Failed to send task finished CloudEvent (%s), aborting...", finishedErr.Error())
+		errMsg := fmt.Sprintf("Failed to send task finished CloudEvent (%s), aborting...", err.Error())
 		log.Println(errMsg)
 		return err
 	}
+	
+	// No error, everything worked as it should
+	return nil
 }
 
 
