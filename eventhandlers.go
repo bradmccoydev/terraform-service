@@ -10,7 +10,8 @@ import (
 	keptnv2 "github.com/keptn/go-utils/pkg/lib/v0_2_0"
 )
 
-func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudevents.Event) error {
+func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, incomingEvent cloudevents.Event) error {
+
 	log.Printf("Handling hello.triggered Event: %s", incomingEvent.Context.GetID())
 	log.Printf("Incoming event ID (differs from above?): %s", incomingEvent.ID())
 	
@@ -26,7 +27,7 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 		log.Println(errMsg)
 		return startedErr
 	}
-	/*
+
 	// Step 2: Do your work here
 	// Optional myKeptn.SendTaskStatusChangedEvent during processing to inform Keptn that the status is being changed during execution
 	log.Printf("Doing work here...")
@@ -43,7 +44,6 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 		log.Println(errMsg)
 		return finishedErr
 	}
-	*/
 	
 	// No error, everything worked as it should
 	return nil
