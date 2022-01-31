@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   keptn-terraform-service:
   - apiVersion: v2
+    appVersion: 0.12.4
+    created: "2022-01-31T12:09:42.881501446Z"
+    description: Helm Chart for the keptn keptn-terraform-service
+    digest: 871631fa4752b7fc7381f05d545b5cb361eb2aa1ab844a63fe1a98a4de689594
+    name: keptn-terraform-service
+    type: application
+    urls:
+    - https://github.com/bradmccoydev/terraform-service/releases/download/keptn-terraform-service-0.12.4/keptn-terraform-service-0.12.4.tgz
+    version: 0.12.4
+  - apiVersion: v2
     appVersion: 0.12.3
     created: "2022-01-31T10:55:06.812860668Z"
     description: Helm Chart for the keptn keptn-terraform-service
@@ -52,4 +62,4 @@ entries:
     urls:
     - https://github.com/bradmccoydev/terraform-service/releases/download/terraform-service-0.0.1/terraform-service-0.0.1.tgz
     version: 0.0.1
-generated: "2022-01-31T10:55:06.812873768Z"
+generated: "2022-01-31T12:09:42.881519847Z"
