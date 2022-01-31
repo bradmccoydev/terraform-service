@@ -1,4 +1,5 @@
-# README
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/terraform-service)](https://artifacthub.io/packages/search?repo=terraform-service)
+# Terraform Service
 
 **BEFORE YOU START**, please be aware that there are more ways to integrate with your service that don't require creating a service from this template, see https://keptn.sh/docs/0.10.x/integrations/how_integrate/ for more details.
 
