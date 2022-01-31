@@ -24,11 +24,11 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 	if startedErr != nil {
 		errMsg := fmt.Sprintf("Failed to send task started CloudEvent (%s), aborting...", startedErr.Error())
 		log.Println(errMsg)
-		return err
+		return startedErr
 	}
 	/*
 	// Step 2: Do your work here
-	// Optional myKeptn.SendTaskStatusChangedEvent during processing to inform Keptn that hte status is being changed during execution
+	// Optional myKeptn.SendTaskStatusChangedEvent during processing to inform Keptn that the status is being changed during execution
 	log.Printf("Doing work here...")
 	
 	// Step 3 [MANDATORY]: Tell Keptn we have finished handling event and send back data (as a cloud event)
@@ -39,9 +39,9 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 	}, ServiceName)
 
 	if finishedErr != nil {
-		errMsg := fmt.Sprintf("Failed to send task finished CloudEvent (%s), aborting...", err.Error())
+		errMsg := fmt.Sprintf("Failed to send task finished CloudEvent (%s), aborting...", finishedErr.Error())
 		log.Println(errMsg)
-		return err
+		return finishedErr
 	}
 	*/
 	
