@@ -1,3 +1,7 @@
+# Use terraform-plan-validator image to get the binaries and default configurations
+# https://hub.docker.com/r/bradmccoydev/terraform-plan-validator
+FROM bradmccoydev/terraform-plan-validator:7acd227edb8f0b320324ca87e44644e9fffc7a16 as validator
+
 # Use the offical Golang image to create a build artifact.
 # This is based on Debian and sets the GOPATH to /go.
 # https://hub.docker.com/_/golang
@@ -43,8 +47,9 @@ ENV ENV=production
 # See https://github.com/gliderlabs/docker-alpine/issues/136#issuecomment-272703023
 
 RUN    apk update && apk upgrade \
-	&& apk add ca-certificates libc6-compat \
+	&& apk add --no-cache --virtual .certs-pkgs ca-certificates libc6-compat \
 	&& update-ca-certificates \
+	&& apk del .certs-pkgs \
 	&& rm -rf /var/cache/apk/*
 
 ARG version=develop
@@ -52,6 +57,28 @@ ENV VERSION="${version}"
 
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /src/terraform-service/terraform-service /terraform-service
+
+
+# Set Env Variables for terraform-plan-validator
+ENV OPA_GCP_POLICY=opa-gcp-policy.rego
+ENV OPA_AZURE_POLICY=opa-azure-policy.rego
+ENV OPA_AWS_POLICY=opa-aws-policy.rego
+ENV OPA_REGO_QUERY=data.terraform.analysis.authz
+
+# Copy terraform and tf-sec binaries from validator image
+COPY --from=validator /usr/local/bin/tfsec /usr/local/bin/tfsec
+COPY --from=validator /usr/local/bin/terraform /usr/local/bin/terraform
+
+WORKDIR /terraform-plan-validator
+# Copy terraform plan validator binary
+COPY --from=validator /terraform-plan-validator terraform-plan-validator
+COPY --from=validator terraform-plan-validator /usr/bin/terraform-plan-validator
+
+# Copy terraform plan validator and tf-sec policies
+COPY --from=validator /terraform-plan-validator/app.env ./app.env
+COPY --from=validator /terraform-plan-validator/opa-azure-policy.rego ./opa-azure-policy.rego
+COPY --from=validator /terraform-plan-validator/opa-gcp-policy.rego ./opa-gcp-policy.rego
+COPY --from=validator /terraform-plan-validator/app.env /opt/atlassian/pipelines/agent/build
 
 EXPOSE 8080
 
