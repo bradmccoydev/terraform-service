@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 0.12.0
+appVersion: "0.12.0"
 description: Helm Chart for the keptn keptn-terraform-service
 name: keptn-terraform-service
 type: application
