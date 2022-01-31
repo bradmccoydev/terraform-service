@@ -19,7 +19,7 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, incomingEvent cloudevents
 	_, startedErr := myKeptn.SendTaskStartedEvent(&keptnv2.EventData{
 			Status:  keptnv2.StatusSucceeded,
 			Result:  keptnv2.ResultPass,
-		        Message: "Start to handler the hello sequence...",
+		        Message: "Start to handle the hello sequence...",
 	}, ServiceName)
 					      
 	if startedErr != nil {
@@ -30,7 +30,7 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, incomingEvent cloudevents
 
 	// Step 2: Do your work here
 	// Optional myKeptn.SendTaskStatusChangedEvent during processing to inform Keptn that the status is being changed during execution
-	log.Printf("Doing work here...")
+	log.Printf("Doing useful work here...")
 	
 	// Step 3 [MANDATORY]: Tell Keptn we have finished handling event and send back data (as a cloud event)
 	_, finishedErr := myKeptn.SendTaskFinishedEvent(&keptnv2.EventData{
