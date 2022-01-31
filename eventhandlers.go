@@ -26,7 +26,7 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 		log.Println(errMsg)
 		return err
 	}
-	
+	/*
 	// Step 2: Do your work here
 	// Optional myKeptn.SendTaskStatusChangedEvent during processing to inform Keptn that hte status is being changed during execution
 	log.Printf("Doing work here...")
@@ -43,6 +43,7 @@ func HandleHelloTriggeredEvent(myKeptn *keptnv2.Keptn, , incomingEvent cloudeven
 		log.Println(errMsg)
 		return err
 	}
+	*/
 	
 	// No error, everything worked as it should
 	return nil
